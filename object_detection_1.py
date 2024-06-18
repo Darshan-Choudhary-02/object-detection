@@ -1,8 +1,8 @@
 import cv2
 import matplotlib.pyplot as plt
 
-config_file = "./mobile_net_Deeplearning_model/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt"
-frozen_model = "./mobile_net_Deeplearning_model/frozen_inference_graph.pb"
+config_file = "ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt"
+frozen_model = "frozen_inference_graph.pb"
 
 model = cv2.dnn_DetectionModel(frozen_model, config_file)
 
@@ -13,11 +13,11 @@ model.setInputSwapRB(True)
 
 
 classes = []
-with open("./mobile_net_Deeplearning_model/label.txt","rt") as fpt:
+with open("label.txt","rt") as fpt:
     classes = fpt.read().rstrip("\n").split("\n")
 # print(classes)
 
-img = cv2.imread("./images/street.jpg")
+img = cv2.imread("street.jpg")
 
 classIndex, confidence, bbox = model.detect(img, confThreshold = 0.5)
 
